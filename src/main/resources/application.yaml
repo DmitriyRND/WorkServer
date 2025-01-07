@@ -1,1 +1,23 @@
-spring.application.name=WorkServer
+spring:
+  application:
+    name: WorkServer
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/BidBD
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+

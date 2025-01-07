@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #61dafb;
+            color: #282c34;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* Анимация снега */
+        .snowflake {
+            position: absolute;
+            top: 0;
+            font-size: 1em;
+            color: white;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
 <body>
-$END$
+<h1>Регистрация</h1>
+<div class="form-container">
+    <!-- Вывод сообщения об ошибке -->
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}">Сообщение об ошибке</p>
+    </div>
+
+    <form th:action="@{/reg}" method="post">
+        <input type="text" name="name" placeholder="Имя" required>
+        <input type="datetime-local" name="dateTime" placeholder="Дата и время" required>
+        <input type="text" name="telegram" placeholder="Телеграм" required>
+        <input type="text" name="phone" placeholder="Номер телефона (необязательно)">
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+<!-- Снег -->
+<script>
+    const snowflakeCount = 50;
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+        snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+        snowflake.innerText = '❄';
+        document.body.appendChild(snowflake);
+    }
+</script>
 </body>
 </html>

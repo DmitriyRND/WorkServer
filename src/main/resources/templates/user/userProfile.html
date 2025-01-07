@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .balance {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #4caf50;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Личный кабинет</h1>
+    <p>Добро пожаловать, <span th:text="${user.username}"></span>!</p>
+    <p class="balance">Ваш баланс: <span th:text="${user.balance}"></span> ₽</p>
+
+    <form action="/transfer" method="post">
+        <label for="recipient">Кому перевести:</label>
+        <input type="text" id="recipient" name="recipient" placeholder="Введите имя пользователя" required>
+
+        <label for="amount">Сумма перевода:</label>
+        <input type="number" id="amount" name="amount" placeholder="Введите сумму" min="1" required>
+
+        <button type="submit">Перевести</button>
+    </form>
+
+
+</div>
+</body>
+</html>
